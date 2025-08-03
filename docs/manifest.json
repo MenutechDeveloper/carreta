@@ -1,0 +1,22 @@
+{
+  "short_name": "La Carreta",
+  "name": "La Carreta Restaurat",
+  "icons": [
+    {
+      "src": "https://lacarretarest.com/logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://lacarretarest.com/logo.png",
+      "type": "image/png",
+      "sizes": "500x500"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
+
