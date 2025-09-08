@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coming Soon</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at center,#fcd9b8 0%, #fda96d 100%);
+      color:#fff;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    canvas#bg{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .card{
+      position:relative;
+      z-index:2;
+      text-align:center;
+    }
+
+    .headline{
+      font-size: clamp(60px, 12vw, 140px);
+      font-weight:900;
+      letter-spacing:0.06em;
+      display:inline-block;
+      color:#fff;
+      white-space: nowrap;
+    }
+
+    .headline span{
+      display:inline-block;
+      animation: wave 2s ease-in-out infinite;
+    }
+
+    @keyframes wave{
+      0%{transform: translateY(0);} 
+      25%{transform: translateY(-18px);} 
+      50%{transform: translateY(0);} 
+      75%{transform: translateY(12px);} 
+      100%{transform: translateY(0);} 
+    }
+
+    .headline span:nth-child(1){animation-delay:0s}
+    .headline span:nth-child(2){animation-delay:0.05s}
+    .headline span:nth-child(3){animation-delay:0.1s}
+    .headline span:nth-child(4){animation-delay:0.15s}
+    .headline span:nth-child(5){animation-delay:0.2s}
+    .headline span:nth-child(6){animation-delay:0.25s}
+    .headline span:nth-child(7){animation-delay:0.3s}
+    .headline span:nth-child(8){animation-delay:0.35s}
+    .headline span:nth-child(9){animation-delay:0.4s}
+    .headline span:nth-child(10){animation-delay:0.45s}
+    .headline span:nth-child(11){animation-delay:0.5s}
+
+    .sub{
+      margin-top:20px;
+      font-size:20px;
+      opacity:0.9;
+    }
+
+    .btn{
+      margin-top:30px;
+      display:inline-block;
+      padding:14px 26px;
+      font-size:18px;
+      font-weight:600;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      text-decoration:none;
+      color:#fff;
+      background: linear-gradient(90deg,#ff8a00,#ff5e62);
+      box-shadow:0 6px 18px rgba(0,0,0,0.2);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 24px rgba(0,0,0,0.25);
+    }
+    h1, p {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <main class="card">
+    <h1 class="headline"></h1>
+    <p class="sub">We are working on something amazing. Stay tuned!</p>
+    <a href="https://www.restaurantlogin.com/ordering/?restaurant_uid=bf95f0cf-c17a-403f-8580-b9d63914d3ec&amp" class="btn">See MENU & Order Now!</a>
+  </main>
+
+  <script>
+    // Animated headline text
+    const text = 'COMING SOON';
+    const h = document.querySelector('.headline');
+    for (let ch of text){
+      const span = document.createElement('span');
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      h.appendChild(span);
+    }
+
+    // Star-like particles
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = innerWidth;
+    let H = canvas.height = innerHeight;
+
+    class Particle{
+      constructor(){ this.reset(); }
+      reset(){
+        this.x = Math.random()*W;
+        this.y = Math.random()*H;
+        this.r = Math.random()*2+0.5;
+        this.vx = (Math.random()-0.5)*0.3;
+        this.vy = (Math.random()-0.5)*0.3;
+        this.alpha = Math.random();
+        this.life = Math.random()*200+100;
+      }
+      update(){
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life--;
+        if(this.life<=0 || this.x<0 || this.x>W || this.y<0 || this.y>H){
+          this.reset();
+          this.x = Math.random()*W;
+          this.y = H+5;
+        }
+      }
+      draw(){
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    let particles = [];
+    for(let i=0;i<150;i++) particles.push(new Particle());
+
+    function loop(){
+      ctx.clearRect(0,0,W,H);
+      for(let p of particles){ p.update(); p.draw(); }
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    addEventListener('resize',()=>{
+      W = canvas.width = innerWidth;
+      H = canvas.height = innerHeight;
+    });
+  </script>
+</body>
+</html>

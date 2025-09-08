@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coming Soon | Your Brand</title>
+  <meta name="description" content="We are preparing something amazing. Subscribe to be the first to know." />
+  <meta property="og:title" content="Coming Soon | Your Brand" />
+  <meta property="og:description" content="We are preparing something amazing. Subscribe to be the first to know." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#111827" />
+  <style>
+    :root{
+      --bg-1:#0f172a;
+      --bg-2:#111827;
+      --fg:#e5e7eb;
+      --muted:#9ca3af;
+      --brand:#22d3ee;
+      --brand-2:#a78bfa;
+      --accent:#34d399;
+      --radius:22px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      color:var(--fg);
+      background: linear-gradient(270deg, var(--bg-1), var(--bg-2), #1e293b);
+      background-size: 600% 600%;
+      animation: gradientFlow 18s ease infinite;
+      overflow-x:hidden;
+    }
+    @keyframes gradientFlow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.08;mix-blend-mode:soft-light;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.5"/></svg>');}
+
+    .gradient-orbs{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+    .orb{position:absolute;filter:blur(60px);opacity:.45;animation:float 24s ease-in-out infinite}
+    .orb:nth-child(1){width:420px;height:420px;left:-80px;top:-60px;background:radial-gradient(circle at 30% 30%, var(--brand), transparent 60%)}
+    .orb:nth-child(2){width:520px;height:520px;right:-120px;bottom:-100px;background:radial-gradient(circle at 70% 70%, var(--brand-2), transparent 60%);animation-duration:30s}
+    .orb:nth-child(3){width:380px;height:380px;left:50%;top:60%;transform:translate(-50%,-50%);background:radial-gradient(circle at 50% 50%, var(--accent), transparent 60%);animation-duration:28s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+
+    main{min-height:100%;display:grid;place-items:center;padding:24px}
+
+    .card{
+      width:min(980px, 92vw);
+      background:rgba(17, 24, 39, .55);
+      border:1px solid rgba(229, 231, 235, .08);
+      backdrop-filter: blur(12px);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:clamp(18px, 4vw, 40px);
+      position:relative;
+      overflow:hidden;
+    }
+    .badge{display:inline-flex;gap:10px;align-items:center;padding:6px 12px;border-radius:999px;border:1px solid rgba(229,231,235,.15);color:var(--muted);font-weight:600;letter-spacing:.2px;background:rgba(255,255,255,.03)}
+    .badge .dot{width:8px;height:8px;border-radius:999px;background:var(--brand);box-shadow:0 0 0 4px rgba(34,211,238,.15)}
+
+    h1{margin:16px 0 8px;font-size:clamp(28px, 5vw, 54px);line-height:1.05;letter-spacing:-.02em}
+    .lead{margin:0 0 22px;color:var(--muted);font-size:clamp(14px, 2.3vw, 18px)}
+
+    .countdown{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:14px;margin:26px 0 18px}
+    .time{
+      text-align:center;padding:16px;border-radius:16px;border:1px solid rgba(229,231,235,.1);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+    }
+    .time .num{display:block;font-variant-numeric:tabular-nums; font-feature-settings:"tnum" on;
+      font-size:clamp(24px, 5vw, 42px);font-weight:800}
+    .time .label{display:block;color:var(--muted);font-size:12px;letter-spacing:.6px;text-transform:uppercase}
+
+    .form{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .form input[type=email]{flex:1 1 260px;min-width:0;padding:14px 16px;border-radius:14px;border:1px solid rgba(229,231,235,.12);background:rgba(255,255,255,.04);color:var(--fg);outline:none}
+    .form input::placeholder{color:#94a3b8}
+    .form button{flex:0 0 auto;padding:14px 18px;border:0;border-radius:14px;background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#0b1020;font-weight:800;cursor:pointer;transition:transform .05s ease, filter .2s ease}
+    .form button:active{transform:translateY(1px)}
+
+    .meta{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:14px;color:var(--muted);font-size:14px}
+
+    .social{display:flex;gap:10px;margin-left:auto}
+    .iconbtn{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(229,231,235,.12);background:rgba(255,255,255,.03)}
+    .iconbtn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+
+    footer{margin-top:22px;color:#6b7280;font-size:12px;text-align:center}
+
+    @media (max-width:520px){
+      .countdown{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .social{width:100%;justify-content:center;margin-left:0}
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{--fg:#0f172a;--muted:#4b5563}
+      .card{background:rgba(255,255,255,.7);border-color:rgba(0,0,0,.06)}
+      body{background:linear-gradient(120deg, #eef2ff, #e0f2fe);animation:none}
+    }
+
+    /* Botón externo centrado */
+.launch-btn{
+  margin-top:20px;
+  padding:16px 24px;
+  font-size:16px;
+  font-weight:800;
+  border-radius:16px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-2));
+  color:#0b1020;
+  border:none;
+  cursor:pointer;
+  transition:transform .05s ease, filter .2s ease;
+  text-decoration:none;
+  display:inline-block;
+}
+.launch-btn:active{transform:translateY(1px);}
+
+  </style>
+</head>
+<body>
+  <div class="gradient-orbs" aria-hidden="true">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <main>
+    <section class="card" role="region" aria-label="Coming Soon Section">
+      <span class="badge"><span class="dot"></span> Coming Soon</span>
+      <h1>Something big is coming 🚀</h1>
+      <p class="lead">We’re polishing the final details. Leave us your email and we’ll notify you as soon as we launch.</p>
+
+      <div class="countdown" aria-live="polite">
+        <div class="time"><span class="num" id="d">–</span><span class="label">Days</span></div>
+        <div class="time"><span class="num" id="h">–</span><span class="label">Hours</span></div>
+        <div class="time"><span class="num" id="m">–</span><span class="label">Min</span></div>
+        <div class="time"><span class="num" id="s">–</span><span class="label">Sec</span></div>
+      </div>
+
+      <form class="form" id="notifyForm" autocomplete="email" novalidate>
+        <label class="sr-only" for="email">Email address</label>
+        <input id="email" type="email" name="email" placeholder="you@example.com" required />
+        <button type="submit" aria-label="Notify me">Notify Me</button>
+      </form>
+
+      <div class="meta">
+        <span id="launchText">We launch on <strong id="launchDateText">—</strong></span>
+        <div class="social" aria-label="Social networks">
+          <a class="iconbtn" href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z"/><rect x="8" y="8" width="8" height="8" rx="4"/><circle cx="18" cy="6" r="1.2"/></svg>
+          </a>
+          <a class="iconbtn" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.7V12h2.7V9.6c0-2.7 1.6-4.2 4-4.2 1.2 0 2.4.2 2.4.2v2.6h-1.3c-1.3 0-1.7.8-1.7 1.6V12h3l-.5 2.9h-2.5v7A10 10 0 0 0 22 12Z"/></svg>
+          </a>
+          <a class="iconbtn" href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4.9A10 10 0 0 0 4.3 20.5L3 21l.5-1.3A10 10 0 1 0 20 4.9Zm-2.8 11.6c-.1.4-.7.8-1 1-.2.1-.5.2-.8.1-2.1-.5-3.7-1.4-5-2.8-1-.9-1.7-1.9-2.3-3-.2-.3-.1-.6 0-.8l.7-1.5c.1-.3.3-.4.6-.4h.4c.2 0 .3 0 .5.4l.7 1.6c.1.2 0 .4 0 .5l-.3.5c-.1.1-.1.3 0 .4.5.9 1.2 1.7 2.1 2.3.1.1.3.1.4 0l.6-.3c.1-.1.3-.1.4 0l1.8.8c.2.1.3.2.3.4l-.1.7Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <footer> © <span id="year"></span> Menutech. All rights reserved.</footer>
+    </section>
+    <a href="https://www.restaurantlogin.com/ordering/?restaurant_uid=bf95f0cf-c17a-403f-8580-b9d63914d3ec&amp" class="launch-btn" target="_blank">See MENU & Order Now!</a>
+
+  </main>
+  <script>
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+  <script>
+    const LAUNCH_DATE = '2025-10-15T10:00:00';
+    const pad = (n) => String(n).padStart(2, '0');
+    const $ = (id) => document.getElementById(id);
+
+    $('year').textContent = new Date().getFullYear();
+
+    const launch = new Date(LAUNCH_DATE);
+    const opts = {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit'};
+    $('launchDateText').textContent = launch.toLocaleString('en-US', opts);
+
+    const update = () => {
+      const now = new Date();
+      const diff = launch - now;
+      if (diff <= 0) {
+        $('d').textContent = '00';
+        $('h').textContent = '00';
+        $('m').textContent = '00';
+        $('s').textContent = '00';
+        document.querySelector('.lead').textContent = 'We have launched! ✨';
+        $('launchText').style.display = 'none';
+        clearInterval(timer);
+        return;
+      }
+      const s = Math.floor(diff / 1000);
+      const days = Math.floor(s / 86400);
+      const hours = Math.floor((s % 86400) / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      const secs = s % 60;
+      $('d').textContent = pad(days);
+      $('h').textContent = pad(hours);
+      $('m').textContent = pad(mins);
+      $('s').textContent = pad(secs);
+    };
+    const timer = setInterval(update, 1000); update();
+
+    // --- Google Sheets integration ---
+    const form = document.getElementById('notifyForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      if(!valid){
+        alert('Please enter a valid email address.');
+        return;
+      }
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbxSdABIoT8Wl305R5izDEE8ozYKgXEyC1XGg1YvdRSOalud8rFjhhSOZwHTqfTAX3siAg/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+        alert("Thanks! Your email has been saved.");
+        form.reset();
+      } catch (error) {
+        alert("Error saving your email, please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
