@@ -87,10 +87,18 @@
 
     footer{margin-top:22px;color:#6b7280;font-size:12px;text-align:center}
 
-    @media (max-width:520px){
-      .countdown{grid-template-columns:repeat(2, minmax(0,1fr))}
-      .social{width:100%;justify-content:center;margin-left:0}
-    }
+   @media (max-width:520px){
+  .countdown{
+    display:flex;        /* cambia de grid a flex */
+    flex-wrap: nowrap;   /* todos en una fila */
+    gap:10px;
+    overflow-x:auto;     /* permite deslizar si no cabe */
+    margin:26px 0 18px;
+  }
+  .time{flex:0 0 auto;} /* que cada bloque conserve su tamaño */
+  .social{display:none;} /* quitamos redes sociales */
+}
+
 
     @media (prefers-color-scheme: light){
       :root{--fg:#0f172a;--muted:#4b5563}
@@ -230,3 +238,4 @@
   </script>
 </body>
 </html>
+
