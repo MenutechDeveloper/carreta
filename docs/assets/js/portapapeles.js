@@ -1,6 +1,6 @@
 
   document.getElementById("link21").addEventListener("click", () => {
-    const url = "https://lasalsitapinchi.com/app.html";
+    const url = "https://lacarretarest.com/app";
 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(url)
@@ -41,4 +41,5 @@
       }, 2000);
     }
   });
+
 
