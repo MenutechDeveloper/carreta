@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // === iOS popup ===
     if (isIOS()) {
       if (iosPopup) iosPopup.style.display = 'flex';
-      return;
+      return; // Salimos antes de deferredPrompt
     }
     // === end iOS popup ===
 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const messaging = firebase.messaging();
 messaging.requestPermission()
   .then(() => messaging.getToken({ vapidKey: 'BBWGV_mbSdoU8vi0Al-d79Dg4o02LUncG8Gqt4FUnhvKLk5TdNi' }))
-  .then((currentToken) => { if (currentToken) console.log('✅ User token:', currentToken); })
+  .then((currentToken) => { if(currentToken) console.log('✅ User token:', currentToken); })
   .catch((err) => console.error('❌ Error getting token:', err));
 
 messaging.onMessage((payload) => {
@@ -93,4 +93,3 @@ messaging.onMessage((payload) => {
     body: payload.notification.body
   });
 });
-
