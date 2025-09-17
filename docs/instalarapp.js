@@ -1,15 +1,14 @@
 let deferredPrompt;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const installBtn = document.getElementById('installBtn');
-  const installContainer = document.getElementById('installContainer'); // 🔹 contenedor
+  const installContainer = document.getElementById('installContainer'); // usamos el contenedor clicable
+  const iosPopup = document.getElementById('iosPopup');
+  const closeIosPopup = document.getElementById('closeIosPopup');
 
   // === iOS popup ===
   function isIOS() {
     return /iphone|ipad|ipod/i.test(navigator.userAgent);
   }
-  const iosPopup = document.getElementById('iosPopup');
-  const closeIosPopup = document.getElementById('closeIosPopup');
   if (closeIosPopup) {
     closeIosPopup.addEventListener('click', () => {
       iosPopup.style.display = 'none';
@@ -26,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    installBtn.classList.add('instalable');
+    installContainer.classList.add('instalable');
   });
 
-  // Al hacer clic en el contenedor de instalación
+  // Al hacer clic en el botón de instalación
   installContainer.addEventListener('click', async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // evitamos que el <a> dispare cosas raras
 
     // === iOS popup ===
     if (isIOS()) {
@@ -96,4 +95,3 @@ messaging.onMessage((payload) => {
     body: payload.notification.body
   });
 });
-
