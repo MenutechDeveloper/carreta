@@ -2,6 +2,7 @@ let deferredPrompt;
 
 document.addEventListener('DOMContentLoaded', () => {
   const installBtn = document.getElementById('installBtn');
+  const installContainer = document.getElementById('installContainer'); // 🔹 contenedor
 
   // === iOS popup ===
   function isIOS() {
@@ -28,8 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     installBtn.classList.add('instalable');
   });
 
-  // Al hacer clic en el botón de instalación
-  installBtn.addEventListener('click', async () => {
+  // Al hacer clic en el contenedor de instalación
+  installContainer.addEventListener('click', async (e) => {
+    e.preventDefault();
+
     // === iOS popup ===
     if (isIOS()) {
       if (iosPopup) iosPopup.style.display = 'flex';
@@ -93,3 +96,4 @@ messaging.onMessage((payload) => {
     body: payload.notification.body
   });
 });
+
